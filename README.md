@@ -10,6 +10,34 @@ YAFFA is a FORTH environment that runs on the Arduino Uno. It currently has a "w
 I am writing YAFFA in an attempt to learn more about FORTH. After reviewing a number for FORTH like programs for the Arduino and Atmel's ATMega micro-controllers I decided to write my own for a few reasons. First I wanted it written in C so that it would be portable, and more accessible to others. Second, the ones written in C, for Arduino, were very limited in the number of words supported.
 
 ##Releases:
+###0.7.1
+- Michel Julien contributed the following fixes. AFAIK there are no bugs left, ignoring the undocumented ">name" word.
+  - Fixed 'm*'
+  - remove duplicate 'drop', 'over' and '=' from flashDict
+  - Fixed '>number'
+  - Made 'base' a cell instead of a char
+  - Fixed '#'
+  - Fixed 'plus_loop-sys' and documented properly
+  - Fixed '2@', x1 and x2 were reversed
+  - Fixed '2over', was x1,x2,x3,x4 -- x1,x2,x3,x4,x1,'x3'
+    instead of x1,x2,x3,x4 -- x1,x2,x3,x4,x1,x2
+  - Fixed 'get_line' neglected to decrement count on 'BS'
+  - Fixed '#s'
+  - Fixed 'count' was returning "addr 1+" instead of "addr cell+"
+    Note that addr maybe be unaligned
+  - Fixed 'fm/mod'
+  - Removed "Not implemented yet" message in 'unloop"
+  - Fixed 'postpone'. You can now define:
+          : endif postpone then ; immediate
+     and use the new definition like so:
+          : test ( flag --) if ." true" else ." false" endif ;
+  - Fixed 'quit'
+  - Fixed 'repeat'
+  - Fixed 's>d'
+  - Fixed 'sm/rem'
+  - Made 'state' a cell instead of a char, per specs.
+  - Fixed 'um/mod'
+  
 ###0.6.1
 - Documentation cleanup. thanks to Dr. Hugh Sasse, BSc(Hons), PhD
 
