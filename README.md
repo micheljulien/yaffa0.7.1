@@ -28,9 +28,9 @@ I am writing YAFFA in an attempt to learn more about FORTH. After reviewing a nu
   - Fixed 'fm/mod'
   - Removed "Not implemented yet" message in 'unloop"
   - Fixed 'postpone'. You can now define:
-          - : endif postpone then ; immediate
-          - and use the new definition like so:
-          - : test ( flag --) if ." true" else ." false" endif ;
+    - : endif postpone then ; immediate
+    - and use the new definition like so:
+    - : test ( flag --) if ." true" else ." false" endif ;
   - Fixed 'quit'
   - Fixed 'repeat'
   - Fixed 's>d'
