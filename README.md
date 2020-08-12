@@ -11,7 +11,7 @@ I am writing YAFFA in an attempt to learn more about FORTH. After reviewing a nu
 
 ##Releases:
 ###0.7.1
-- Michel Julien contributed the following fixes. AFAIK there are no bugs left, ignoring the undocumented ">name" word.
+- Michel Julien contributed the following fixes. AFAIK there are no bugs left, ignoring the undocumented ">name" word and 'abort"'.
   - Fixed 'm*'
   - remove duplicate 'drop', 'over' and '=' from flashDict
   - Fixed '>number'
