@@ -1,0 +1,8 @@
+The implementation of "literal" has a single 'cfa' (code field address) for both compile 
+mode and execution mode.  The distinction is made by testing 'state'.  This causes problems
+if you try to do something as trivial as this:
+: [0.] 0 . ; immediate 
+: test_it  [0.] ;
+While 'test_it' is compiled, we start executing [0.]. It should put '0' on the stack and 
+display it but instead, literal checks the 'state', and gives us the compile time behavior
+i.e. compile 'literal' and also compile whatever is on the stack.
