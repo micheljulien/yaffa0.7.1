@@ -6,3 +6,6 @@ if you try to do something as trivial as this:
 While 'test_it' is compiled, we start executing [0.]. It should put '0' on the stack and 
 display it but instead, literal checks the 'state', and gives us the compile time behavior
 i.e. compile 'literal' and also compile whatever is on the stack.
+
+This process may need to be applied to other words, as I've notice several 'state' checks.
+We'll see.
