@@ -504,7 +504,9 @@ void interpreter(void) {
           *pHere++ = w;
         }
       } else if (isNumber(cTokenBuffer)) {
-        _literal();
+//        _literal();
+	  *pHere++ = LITERAL_IDX;
+	  *pHere++ = pop();
       } else {
         push(-13);
         _throw();
