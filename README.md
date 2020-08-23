@@ -37,6 +37,7 @@ I am writing YAFFA in an attempt to learn more about FORTH. After reviewing a nu
   - Fixed 'sm/rem'
   - Made 'state' a cell instead of a char, per specs.
   - Fixed 'um/mod'
+  - Fixed 'literal'
   
 ###0.6.1
 - Documentation cleanup. thanks to Dr. Hugh Sasse, BSc(Hons), PhD
