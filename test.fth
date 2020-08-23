@@ -1,11 +1,12 @@
-: blink
-    13 1 pinMode
+: blink ( 2 -- ) ( 'pin#' 'seconds' blink )
+    over 1 pinMode
     begin
-        13 0 pinWrite
+        over 0 pinWrite
         500 delay
-        13 1 pinWrite
+        over 1 pinWrite
         500 delay
-    0 until 
+        1- dup 0=
+    until 
 ;
 
 : dabs ( d1 -- d2 )
@@ -24,9 +25,10 @@
     <# #s #> type space
 ;
 
-: 2num 0 0 bl word count >number swap drop
+: 2num ("<spaces>string" -- |d )
+    0 0 bl word count >number swap drop
     if 
-      ." The string is not a valid number." exit
+      ." Invalid number" exit
     then
     state @
     if
