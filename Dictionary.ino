@@ -1209,18 +1209,19 @@ void _leave(void) {
   *pHere++ = 0;
 }
 
-const PROGMEM char literal_str[] = "literal";
-// Interpretation: undefined
-// Compilation: ( x -- )
+const PROGMEM char do_literal_str[] = "do_literal";
 // Run-Time: ( -- x )
 // Place x on the stack
 void _literal(void) {
-  if (state) {
-    *pHere++ = LITERAL_IDX;
-    *pHere++ = pop();
-  } else {
     push(*ip++);
-  }
+}
+
+const PROGMEM char literal_str[] = "literal";
+// Interpretation: undefined
+// Compilation: ( x -- )
+void _literal(void){
+  *pHere++ = LITERAL_IDX;
+  *pHere++ = pop();
 }
 
 const PROGMEM char loop_str[] = "loop";
@@ -1666,12 +1667,13 @@ const PROGMEM char word_str[] = "word";
 // not depend on the existence of the space.
 void _word(void) {
   uint8_t *start, *ptr;
+  char delim;
 
-  cDelimiter = (char)pop();
+  delim = (char)pop();
   start = (uint8_t *)pHere++;
   ptr = (uint8_t *)pHere;
   while (cpToIn <= cpSourceEnd) {
-    if (*cpToIn == cDelimiter || *cpToIn == 0) {
+    if (*cpToIn == delim || *cpToIn == 0) {
       *((cell_t *)start) = (ptr - start) - sizeof(cell_t); // write the length byte
       pHere = (cell_t *)start;                     // reset pHere (transient memory)
       push((size_t)start);                // push the c-addr onto the stack
@@ -1679,7 +1681,6 @@ void _word(void) {
       break;
     } else *ptr++ = *cpToIn++;
   }
-  cDelimiter = ' ';
 }
 
 const PROGMEM char xor_str[] = "xor";
@@ -2604,7 +2605,7 @@ const PROGMEM flashEntry_t flashDict[] = {
   /* referenced when compiling code                    */
   /*****************************************************/
   { exit_str,           _exit,            NORMAL },
-  { literal_str,        _literal,         IMMEDIATE },
+  { do_literal_str,     _do_literal,      NORMAL },
   { type_str,           _type,            NORMAL },
   { jump_str,           _jump,            SMUDGE },
   { zjump_str,          _zjump,           SMUDGE },
@@ -2626,6 +2627,7 @@ const PROGMEM flashEntry_t flashDict[] = {
   /* Order does not matter after here                  */
   /* Core Words                                        */
   /*****************************************************/
+  { literal_str,        _literal,         IMMEDIATE },
   { abort_str,          _abort,           NORMAL },
   { store_str,          _store,           NORMAL },
   { number_sign_str,    _number_sign,     NORMAL },
