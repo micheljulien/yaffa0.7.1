@@ -1,12 +1,16 @@
 : blink ( 2 -- ) ( 'pin#' 'seconds' blink )
     over 1 pinMode
-    begin
-        over 0 pinWrite
-        500 delay
-        over 1 pinWrite
-        500 delay
-        1- dup 0=
-    until 
+    dup 
+    if
+      begin
+          over 0 pinWrite
+          500 delay
+          over 1 pinWrite
+          500 delay
+          1- dup 0=
+      until
+    then
+    2drop
 ;
 
 : dabs ( d1 -- d2 )
