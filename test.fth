@@ -37,11 +37,11 @@
 ;
 
 : d. ( d -- )
-    dup >r dabs <# #s r> sign #> type space 
+    dup >r dabs <# # #s r> sign #> type space 
 ;
 
  : du. ( du -- )
-    <# #s #> type space
+    <# # #s #> type space
 ;
 
 : 2num ( "spaces<ccc>" -- |d )
