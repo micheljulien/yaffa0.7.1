@@ -24,7 +24,8 @@
 : dnegate ( d -- d )
     2dup d0<>
     if
-      invert swap negate swap
+      invert swap negate swap over 0=
+      if 1+ then
     then
 ;
 
