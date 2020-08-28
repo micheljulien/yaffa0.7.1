@@ -22,11 +22,8 @@
 ;
 
 : dnegate ( d -- d )
-    2dup d0<>
-    if
-      invert swap negate swap over 0=
-      if 1+ then
-    then
+    invert swap negate swap over 0=
+    if 1+ then
 ;
 
 : dabs ( d1 -- d2 )
