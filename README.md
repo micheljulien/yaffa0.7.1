@@ -38,6 +38,7 @@ I am writing YAFFA in an attempt to learn more about FORTH. After reviewing a nu
   - Made 'state' a cell instead of a char, per specs.
   - Fixed 'um/mod'
   - Fixed 'literal'
+  - In 'get_line()' if char is 'BS' decrement 'count' only if 'count' is > 0
   
 ###0.6.1
 - Documentation cleanup. thanks to Dr. Hugh Sasse, BSc(Hons), PhD
