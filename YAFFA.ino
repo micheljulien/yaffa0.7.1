@@ -415,7 +415,7 @@ uint8_t getLine(char* ptr, uint8_t buffSize) {
     if (inChar == ASCII_BS) {
       if (count) {
         *--ptr = 0;
-        count--;
+        if (count > 0) count--;
         if (flags & ECHO_ON) Serial.print(F("\b \b"));
       }
     } else if (inChar == ASCII_TAB || inChar == ASCII_ESC) {
